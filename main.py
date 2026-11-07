@@ -1,28 +1,28 @@
 import sqlite3
-from hashlib import sha256
+import bcrypt
 try : 
 
      connection = sqlite3.connect('sentinel_db.sqlite')
      
      
      class User :
-         def __init__(self, name, email, password):
+         def __init__(self, name : str, email : str, password_hashed: bytes):
             self.name = name
             self.email = email
-            self.password = password
+            self.password_hashed = password_hashed
 
          @classmethod
          def create_user (cls) :
              name = input('Enter your name : ')
              email = input('Enter your mail : ')
-             #password_hashed = sha256(password)
              password = input('Enter your password : ')
-             return cls(name, email, password)
+             password_hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+             return cls(name, email, password_hashed)
      
      user1 = User.create_user()
      
      cursor = connection.cursor()
-     cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (user1.name, user1.email, user1.password))
+     cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (user1.name, user1.email, user1.password_hashed))
      connection.commit()
 
 
