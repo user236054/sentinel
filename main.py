@@ -19,11 +19,22 @@ try :
              password_hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
              return cls(name, email, password_hashed)
      
-     user1 = User.create_user()
+     #user1 = User.create_user()
      
-     cursor = connection.cursor()
-     cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (user1.name, user1.email, user1.password_hashed))
-     connection.commit()
+     #cursor = connection.cursor()
+     #cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (user1.name, user1.email, user1.password_hashed))
+     #connection.commit()
+     
+         @staticmethod
+         def index () :
+           cursor = connection.cursor()
+           cursor.execute('SELECT * FROM users')
+           metadata = cursor.fetchall()
+           for data in metadata : 
+            print(f'Metadata : {data}')
+
+     User.index()
+
 
 
 except sqlite3.Error as e : 
