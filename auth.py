@@ -23,7 +23,7 @@ class Login :
         connection.commit()
         return cursor.fetchone()
     
-   # store()
+    store()
     
     def index() :
         cursor = connection.cursor()
