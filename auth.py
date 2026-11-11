@@ -2,6 +2,7 @@
 import sqlite3
 import socket 
 import datetime
+import banner
 
 connection = sqlite3.connect('sentinel_db.sqlite')
 class Login :
