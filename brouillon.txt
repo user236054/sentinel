@@ -1,0 +1,92 @@
+import sqlite3
+
+import bcrypt
+from faker import Faker
+
+fake = Faker()
+
+try:
+    connection = sqlite3.connect("sentinel_db.sqlite")
+
+    class User:
+        def __init__(self, name: str, email: str, password_hashed: bytes):
+            self.name = name
+            self.email = email
+            self.password_hashed = password_hashed
+            
+            
+    class GenerateFakeUser :
+            
+            def generatefakeuser () :
+            
+                for e in range(10) :
+                   name = fake.name()
+                   email = fake.email()
+                   password = fake.password()
+                   cursor.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)", (name, email, password))
+                   
+                
+               
+        
+
+
+
+    
+    
+    class UserManager : 
+        @staticmethod
+        def index():
+            cursor = connection.cursor()
+            cursor.execute("SELECT * FROM users")
+            data = cursor.fetchall()
+            for users in data:
+                data
+                print(f"Data : {users}")
+                
+    User.index()
+           
+        @classmethod
+        def store(self):
+            
+            name = input("Enter your name : ")
+            email = input("Enter your email : ")
+            password = input("Enter your password : ")
+            password_hashed = password.encode("utf-8"), bcrypt.gensalt()
+            return self(name, email, password_hashed)
+    user1 = User.store()
+    cursor = connection.cursor()
+    cursor.execute(
+        "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
+        (user1.name, user1.email, user1.password_hashed),
+    )
+    connection.commit()
+        
+        def show(self, user_id) :
+            pass
+            
+                
+        @classmethod
+        def update(self, user_id):
+            name = input("Enter your new name : ")
+            email = input("Enter your new mail : ")
+            password = input("Enter your new password : ")
+            password_hashed = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+            cursor = connection.cursor()
+            cursor.execute(
+                "UPDATE users SET name = ? email = ? password = ? WHERE id = ?",
+                (name, email, password_hashed),
+            )
+            connection.commit()
+
+        @staticmethod
+        def delete(self, user_id):
+            cursor = connection.cursor()
+            id = int(input('Give id for delete : '))
+            cursor.execute(
+                "DELETE FROM users WHERE id = ? ",(id)
+            )
+            connection.commit()
+
+
+except sqlite3.Error as e:
+    print(f"L'erreur est : {e}")
