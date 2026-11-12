@@ -1,12 +1,10 @@
 import sqlite3
 import datetime
 import pdb
-
 import banner
 
-sentinel_banner = banner
+#sentinel_banner = banner
 
-print(sentinel_banner)
 
 connection = sqlite3.connect('sentinel_db.sqlite')
 

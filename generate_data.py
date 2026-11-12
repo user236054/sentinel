@@ -3,6 +3,7 @@ import datetime
 import random
 from faker import Faker
 import pdb
+import banner
 
 fake = Faker(['it_IT', 'en_US','fr_FR'])
 connection = sqlite3.connect('sentinel_db.sqlite')
