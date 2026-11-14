@@ -37,10 +37,3 @@ class Statistique :
         
         
         
-    def error_connexion() :
-        cursor = connexion.cursor()
-        cursor.execute("SELECT status, COUNT(*)FROM connection_log GROUP BY status")
-        error = cursor.fetchone()
-        print(error)
-        
-    error_connexion()

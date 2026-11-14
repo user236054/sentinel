@@ -43,7 +43,7 @@ class Suspect :
         
                 
         
-    #catch_by_ip()
+    catch_by_ip()
     
     
     def catch_by_username():
